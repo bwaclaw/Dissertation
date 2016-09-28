@@ -12,6 +12,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <ctime>
 
 using namespace std;
 
@@ -30,16 +31,19 @@ public:
 
 
 
-
+//Grid class
 class Grid{
 
     
     
-    
+    //attributes
     public:
         int L; //length of lattice
+    //intialising a grid 2-d array with Cell attibutes
     Cell ** grid;
+    //initialising initilaising 1D array
     int *Iteration();
+    // initalising Grid attribute
     Grid(int p);
     //operator string() const { return "Hi"; }
     
@@ -58,15 +62,26 @@ ostream & operator<<(ostream & Str, Grid const & v) {
     return Str;
 }
 
-
+//grid constructor
  Grid::Grid(int p){
+     //argument of Grid becomes length and height of grid
      L = p;
+     //defining a grid as a 1-d Cell array
      grid = new Cell*[L];
      for (int i =0; i<L; i ++) {
+         // making every 1-d cell [i] have another dimension - of lenth L - making 2-d grid
          grid [i] = new Cell [L];
+         
+         
          for (int j =0; j<L; j ++) {
+         
+             //giving every cell in grid 8 open neighbours
+             
              grid[i][j].IsAble = 8;
+             
+             //making all cells uninfected
              grid[i][j].Inf = 0;
+             //infecting middle cell
              if (i == (L/2 -1) && j ==(L/2 -1)){
                  grid[i][j].Inf = 1;
                  
@@ -76,22 +91,38 @@ ostream & operator<<(ostream & Str, Grid const & v) {
     
      }
      //g = & grid;
-}
+ }
 
+//method for checking where infected cell is
+// pulling array with Grid attributes and initialising the function Iteration
 int *Grid::Iteration(){
+    
+    //initialising array
+    
     int *index;
+    // {0 = i pos, 1= j pos, 2 = inf (1 or 0)}
     index = new int[3];
+    
+    //intialising an infected cell at {0,0}
     index [2] = 0;
     index[0] = 0;
-    index[1] = 1;
+    //already intialised above
+    //index[1] = 1;
+    
+    //printing here to stop loop printing once cancer has spread
+    
+    cout << "Infected cells are present here" << endl;
+    
     for (int i=0; i<L; i++){
         for (int j=0; j<L; j++){
+           
+            // printing position of infected cell
             if (grid[i][j].Inf == 1) {
-                cout << "MAXIMUM OVERBORK" << endl;
+                
                 index [2] = 1;
                 index [0] = i;
                 index [1] = j;
-                cout << index[0] << ',' << index[1] << endl;
+               // cout << index[0] << ',' << index[1] << endl;
             }
         }
             
@@ -101,15 +132,25 @@ int *Grid::Iteration(){
 }
 
 int main() {
-    // insert code here...
+    
+    // seeding the random number
+    srand(time(NULL));
+    
+    
+    //testing the random number
+    // cout << rand() % 100 + 1 << endl;
 
-    Grid G(10);
+    //testing with grid of size length and height 10
+    Grid G(100);
    // G = new Grid (10);
     
+    //printing the grid
     cout << G;
  
+    //initalising array d
     int* d ;
     
+    //printing d which shows where the infected cell is
     d = G.Iteration();
     for(int i =0; i < 2; i++){
         cout << d[i] << ',';
