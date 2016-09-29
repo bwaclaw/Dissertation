@@ -91,20 +91,27 @@ ostream & operator<<(ostream & Str, Grid const & v) {
     
          
          
-         //spreading loops
+         //spreading loops a number of times and 1/6 of the time will spread to the right
          
-         for (int i =0; i<10; i++) {
-             for (int j = 0; j<10; j++) {
-                 i = rand()%10 +1;
-                 j = rand()%10 +1;
+         for (int i =0; i<L; i ++) {
+             
+             for (int j = 0; j<L; j ++) {
+                 
+                 
+                 cout << "is this working" << endl;
+                 i = rand()%L +1;
+                 j = rand()%L +1;
                  
                  //right neighbour will become infected with 1/6 probability
-                 if ((grid[i][j].Inf = 1) && (grid[i+1][j].Inf = 0) && (rand()%6 +1 == 2)) {
+                 if ((grid[i][j].Inf == 1) && (grid[i+1][j].Inf == 0) && (rand()%6 +1 == 2)) {
                      grid[i+1][j].Inf = 1;
+                     
+                     cout << "is this working" << endl;
+
                  }
+                 else grid[i+1][j].Inf = 0;
              }
          }
-         
          
      }
      //g = & grid;
