@@ -89,9 +89,33 @@ ostream & operator<<(ostream & Str, Grid const & v) {
              
          }
     
+         
+         
+         //spreading loops
+         
+         for (int i =0; i<10; i++) {
+             for (int j = 0; j<10; j++) {
+                 i = rand()%10 +1;
+                 j = rand()%10 +1;
+                 
+                 //right neighbour will become infected with 1/6 probability
+                 if ((grid[i][j].Inf = 1) && (grid[i+1][j].Inf = 0) && (rand()%6 +1 == 2)) {
+                     grid[i+1][j].Inf = 1;
+                 }
+             }
+         }
+         
+         
      }
      //g = & grid;
  }
+//method for the spreading of cells
+//int **Grid::Spread(){
+    
+    //getting a checker that will randomly choose from grid and replicate infections to neighbours
+    
+
+//}
 
 //method for checking where infected cell is
 // pulling array with Grid attributes and initialising the function Iteration
@@ -108,6 +132,7 @@ int *Grid::Iteration(){
     index[0] = 0;
     //already intialised above
     //index[1] = 1;
+
     
     //printing here to stop loop printing once cancer has spread
     
@@ -131,6 +156,7 @@ int *Grid::Iteration(){
     return index;
 }
 
+
 int main() {
     
     // seeding the random number
@@ -140,10 +166,12 @@ int main() {
     //testing the random number
     // cout << rand() % 100 + 1 << endl;
 
-    //testing with grid of size length and height 10
-    Grid G(100);
+    //testing with grid of size length and height 100
+    Grid G(10);
+    
    // G = new Grid (10);
     
+
     //printing the grid
     cout << G;
  
