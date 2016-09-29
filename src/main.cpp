@@ -90,35 +90,51 @@ ostream & operator<<(ostream & Str, Grid const & v) {
          }
     
          
-         
-         //spreading loops a number of times and 1/6 of the time will spread to the right
-         
-         for (int i =0; i<L; i ++) {
-             
-             for (int j = 0; j<L; j ++) {
-                 
-                 
-                 cout << "is this working" << endl;
-                 i = rand()%L +1;
-                 j = rand()%L +1;
-                 
-                 //right neighbour will become infected with 1/6 probability
-                 if ((grid[i][j].Inf == 1) && (grid[i+1][j].Inf == 0) && (rand()%6 +1 == 2)) {
-                     grid[i+1][j].Inf = 1;
-                     
-                     cout << "is this working" << endl;
-
-                 }
-                 else grid[i+1][j].Inf = 0;
-             }
-         }
-         
+      
      }
      //g = & grid;
+     
+     
+     
+     //spreading loops a number of times and 1/6 of the time will spread to the right
+     int b = 0;
+     
+     for (int i =0; i<L; i ++) {
+         
+         for (int j = 0; j<L; j ++) {
+             
+             
+             cout << "is this working" << endl;
+             //i = rand()%L;
+             //j = rand()%L;
+             
+             cout << i << j << endl;
+             cout << *this << endl;
+             Cell g = grid[i][j];
+             
+             // el ultimo
+             int y = min(j+1,L-1);
+              //cout << grid[i][j].Inf << endl;
+             //right neighbour will become infected with 1/6 probability
+              if ((grid[i][j].Inf) == 1 && grid[i][y].Inf ==0) {
+             //grid[4][5].Inf = 1;
+                  b = 1;
+                  grid[i][y].Inf = 1;
+                  cout << grid[i][y].Inf << endl;
+                  cout << y << " " << j << endl;
+             cout << "success" << endl;
+                  break;
+             //cout << "is this working" << endl;
+             
+               }
+             //else grid[i+1][j].Inf = 0;
+         }if(b==1) {break;}
+     }
+     
  }
 //method for the spreading of cells
 //int **Grid::Spread(){
-    
+
     //getting a checker that will randomly choose from grid and replicate infections to neighbours
     
 
@@ -142,7 +158,7 @@ int *Grid::Iteration(){
 
     
     //printing here to stop loop printing once cancer has spread
-    
+
     cout << "Infected cells are present here" << endl;
     
     for (int i=0; i<L; i++){
@@ -186,11 +202,11 @@ int main() {
     int* d ;
     
     //printing d which shows where the infected cell is
-    d = G.Iteration();
-    for(int i =0; i < 2; i++){
-        cout << d[i] << ',';
-    }
-    cout << endl;
+    //d = G.Iteration();
+    //for(int i =0; i < 2; i++){
+       // cout << d[i] << ',';
+    //}
+    //cout << endl;
 
     return 0;
 }
