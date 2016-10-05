@@ -24,6 +24,8 @@ using namespace std;
 class Cell{
 public:
     int Inf;
+    
+    // don't need this attribute because it can make it too complicated for updating after infections
     //int IsAble;
     
     
@@ -91,7 +93,7 @@ ostream & operator<<(ostream & Str, Grid const & v) {
      
      
      }
-       //grid [4][4].Inf=1;
+       // infecting a few more cells at the initlisation of the grid
        grid [5][4].Inf=1;
        grid [4][5].Inf=1;
        grid [5][5].Inf=1;
@@ -104,33 +106,54 @@ ostream & operator<<(ostream & Str, Grid const & v) {
 
                 //want a timestep method so we can randomly choose cell that is infected and spread to neighbour
 
-
+            //setting time parameter
             double t = 0;
-            //double dt = 1;
 
 
 
-        while (t <=1000000) {
+
+        while (t <=200000) {
             
             int i = rand()%L;
             int j = rand()%L;
-            int y = min(i+1,L-1);
-            int x = min(j+1,L-1);
             
+        //ensuring x,y lie withing L-1 so that we can spread to edge
+            int y = min(i+1,L-2);
+            int x = min(j+1,L-2);
             //cout << x << ' ' << i << ' '<< y << ' ' << j << endl;
             //if randomly selecting a infected cell
             if(grid[x][y].Inf == 1){
                 
-                //upwards infection
+                //rightwards infection
                 if(grid[x][y+1].Inf == 0) {
-                    grid[x][y+1].Inf == 1;
+                    grid[x][y+1].Inf = 1;
                     
                 }
-                
-                else if(grid[x][y-1].Inf==0){
+                //leftwards
+                else if(grid[x][y-1].Inf == 0){
                     grid[x][y-1].Inf=1;
                     
                  }
+                //upwards
+                else if(grid[x+1][y].Inf == 0){
+                    grid[x+1][y].Inf=1;
+                    
+                }
+                //downwards
+                else if(grid[x-1][y].Inf==0){
+                    grid[x-1][y].Inf=1;
+                    
+                }
+
+                else{
+                }
+            //cout << x+1 << ' ' << x-1 << ' '<< y+1 << ' ' << y-1 << endl;
+            
+                
+                
+                
+                
+                
             }
             t = t + 1;
         }
@@ -292,7 +315,7 @@ int main() {
     // cout << rand() % 100 + 1 << endl;
 
     //testing with grid of size length and height 100
-    Grid G(10);
+    Grid G(100);
     
    // G = new Grid (10);
     
