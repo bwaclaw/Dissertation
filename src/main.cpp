@@ -43,8 +43,12 @@ class Grid{
         int L; //length of lattice
     //intialising a grid 2-d array with Cell attibutes
     Cell ** grid;
-    //initialising initilaising 1D array
+    
+    //initialising interation method array
     int *Iteration();
+    
+    int IRight();
+    
     // initalising Grid attribute
     Grid(int p);
     //operator string() const { return "Hi"; }
@@ -94,117 +98,82 @@ ostream & operator<<(ostream & Str, Grid const & v) {
      
      }
        // infecting a few more cells at the initlisation of the grid
-       grid [5][4].Inf=1;
-       grid [4][5].Inf=1;
-       grid [5][5].Inf=1;
+      // grid [5][4].Inf=1;
+       //grid [4][5].Inf=1;
+       //grid [5][5].Inf=1;
      //grid [4][5].Inf=1;
        //grid [5][5].Inf=1;
      
      
  
 
-
-                //want a timestep method so we can randomly choose cell that is infected and spread to neighbour
-
-            //setting time parameter
-            double t = 0;
-
-
-
-
-        while (t <=200000) {
-            
-            int i = rand()%L;
-            int j = rand()%L;
-            
-        //ensuring x,y lie withing L-1 so that we can spread to edge
-            int y = min(i+1,L-2);
-            int x = min(j+1,L-2);
-            //cout << x << ' ' << i << ' '<< y << ' ' << j << endl;
-            //if randomly selecting a infected cell
-            if(grid[x][y].Inf == 1){
-                
-                //rightwards infection
-                if(grid[x][y+1].Inf == 0) {
-                    grid[x][y+1].Inf = 1;
-                    
-                }
-                //leftwards
-                else if(grid[x][y-1].Inf == 0){
-                    grid[x][y-1].Inf=1;
-                    
-                 }
-                //upwards
-                else if(grid[x+1][y].Inf == 0){
-                    grid[x+1][y].Inf=1;
-                    
-                }
-                //downwards
-                else if(grid[x-1][y].Inf==0){
-                    grid[x-1][y].Inf=1;
-                    
-                }
-
-                else{
-                }
-            //cout << x+1 << ' ' << x-1 << ' '<< y+1 << ' ' << y-1 << endl;
-            
-                
-                
-                
-                
-                
-            }
-            t = t + 1;
-        }
+     
+     
+     //want a timestep method so we can randomly choose cell that is infected and spread to neighbour
+     
+     //setting time parameter
+     double t = 0;
+     
+     
+     
+     
+     while (t <=200000) {
+         
+         int i = rand()%L;
+         int j = rand()%L;
+         
+         //ensuring x,y lie withing L-1 so that we can spread to edge
+         int y = min(i+1,L-2);
+         int x = min(j+1,L-2);
+         //cout << x << ' ' << i << ' '<< y << ' ' << j << endl;
+         //if randomly selecting a infected cell
+         if(grid[x][y].Inf == 1){
+             
+             //rightwards infection
+             if(grid[x][y+1].Inf == 0) {
+                 grid[x][y+1].Inf = 1;
+                // grid[x][y+1].IRight;
+             }
+             
+             //leftwards
+             else if(grid[x][y-1].Inf == 0){
+                 grid[x][y-1].Inf=1;
+                 
+             }
+             //upwards
+             else if(grid[x+1][y].Inf == 0){
+                 grid[x+1][y].Inf=1;
+                 
+             }
+             //downwards
+             else if(grid[x-1][y].Inf==0){
+                 grid[x-1][y].Inf=1;
+                 
+             }
+             
+             else{
+             }
+             //cout << x+1 << ' ' << x-1 << ' '<< y+1 << ' ' << y-1 << endl;
+             
+             
+             
+             
+             
+             
+         }
+         t = t + 1;
+     }
      
 
 
             
             
- }
+}
+
+
             
             
             
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -256,7 +225,7 @@ ostream & operator<<(ostream & Str, Grid const & v) {
      //}
      
             // --------------------------------------------------------------------------------------------------------
- 
+
 //method for the spreading of cells
 //int **Grid::Spread(){
 
@@ -264,6 +233,24 @@ ostream & operator<<(ostream & Str, Grid const & v) {
     
 
 //}
+
+
+//right spreading method taking 2d array argument
+
+//int Grid::IRight(grid[i][j]){
+    
+    //int square
+   // int y = min(i+1,L-2);
+    //int x = min(j+1,L-2);
+    //rightwards infection
+    //if(grid[x][y+1].Inf == 0) {
+      //  grid[x][y+1].Inf = 1;
+    //}
+    
+//}
+
+
+
 
 //method for checking where infected cell is
 // pulling array with Grid attributes and initialising the function Iteration
@@ -310,6 +297,7 @@ int main() {
     // seeding the random number
     srand(time(NULL));
     
+
     
     //testing the random number
     // cout << rand() % 100 + 1 << endl;
