@@ -1,0 +1,443 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     13925,        433]
+NotebookOptionsPosition[     12243,        369]
+NotebookOutlinePosition[     12576,        384]
+CellTagsIndexPosition[     12533,        381]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Import", "[", 
+  RowBox[{"new", ".", "txt"}], "]"}]], "Input",
+ CellChangeTimes->{{3.685273483101063*^9, 3.685273485448423*^9}, {
+  3.685273940921489*^9, 3.6852739463533916`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"Import", "::", "chtype"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"First argument \[NoBreak]\\!\\(new . txt\\)\[NoBreak] is \
+not a valid file, directory, or URL specification. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/Import/chtype\\\", ButtonNote -> \
+\\\"Import::chtype\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.685273947642321*^9}],
+
+Cell[BoxData["$Failed"], "Output",
+ CellChangeTimes->{3.6852739476431227`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Import", "[", 
+  RowBox[{
+  "\"\</home/s1220054/Dissertation/Dissertation/src/new.txt\>\"", ",", " ", 
+   "\"\<CSV\>\""}], "]"}]], "Input",
+ CellChangeTimes->{{3.685274319749834*^9, 3.68527434086725*^9}},
+ NumberMarks->False],
+
+Cell[BoxData["\<\"8,9\\n8,10\\n8,11\\n8,13\\n9,8\\n9,9\\n9,10\\n9,11\\n9,12\\\
+n9,13\\n9,14\\n10,8\\n10,9\\n10,10\\n10,11\\n10,12\\n10,13\\n11,10\\n11,11\"\>\
+"], "Output",
+ CellChangeTimes->{3.685273960734138*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"data", " ", "=", " ", 
+  RowBox[{
+  "Import", "[", 
+   "\"\</home/s1220054/Dissertation/Dissertation/src/new.txt\>\"", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.685273965434864*^9, 3.685273978114303*^9}}],
+
+Cell[BoxData["\<\"8,9\\n8,10\\n8,11\\n8,13\\n9,8\\n9,9\\n9,10\\n9,11\\n9,12\\\
+n9,13\\n9,14\\n10,8\\n10,9\\n10,10\\n10,11\\n10,12\\n10,13\\n11,10\\n11,11\"\>\
+"], "Output",
+ CellChangeTimes->{3.685273980688409*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", "data", "]"}]], "Input",
+ CellChangeTimes->{{3.685273983727501*^9, 3.685273992313788*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ListPlot", "::", "lpn"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\(\\\"8,9\\\\n8,10\\\\n8,11\\\\n8,13\\\\n9,8\
+\\\\n9,9\\\\n9,10\\\\n9,11\\\\n9,12\\\\n9,13\\\\n9,14\\\\n10,8\\\\n10,9\\\\\
+n10,10\\\\n10,11\\\\n10,12\\\\n10,13\\\\n11,10\\\\n11,11\\\"\\)\[NoBreak] is \
+not a list of numbers or pairs of numbers. \\!\\(\\*ButtonBox[\\\"\
+\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/ListPlot\\\", ButtonNote -> \\\"ListPlot::lpn\\\"]\
+\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.685273993627399*^9}],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", 
+  "[", "\<\"8,9\\n8,10\\n8,11\\n8,13\\n9,8\\n9,9\\n9,10\\n9,11\\n9,12\\n9,13\\\
+n9,14\\n10,8\\n10,9\\n10,10\\n10,11\\n10,12\\n10,13\\n11,10\\n11,11\"\>", 
+  "]"}]], "Output",
+ CellChangeTimes->{3.68527399362823*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  RowBox[{"data", " ", "=", " ", 
+   RowBox[{
+   "Import", "[", 
+    "\"\</home/s1220054/Dissertation/Dissertation/src/new.txt\>\"", 
+    "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.68527412658482*^9, 3.685274127460182*^9}}],
+
+Cell[BoxData["\<\"{8,11}\\n{9,9}\\n{9,10}\\n{9,11}\\n{9,12}\\n{9,13}\\n{9,14}\
+\\n{9,15}\\n{10,9}\\n{10,10}\\n{10,11}\\n{10,12}\\n{10,13}\\n{11,8}\\n{11,9}\\\
+n{11,10}\\n{11,11}\\n{11,12}\"\>"], "Output",
+ CellChangeTimes->{3.685274128374406*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", "data", "]"}]], "Input",
+ CellChangeTimes->{{3.6852741317772217`*^9, 3.6852741367699823`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ListPlot", "::", "lpn"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\(\\\"{8,11}\\\\n{9,9}\\\\n{9,10}\\\\n{9,11}\
+\\\\n{9,12}\\\\n{9,13}\\\\n{9,14}\\\\n{9,15}\\\\n{10,9}\\\\n{10,10}\\\\n{10,\
+11}\\\\n{10,12}\\\\n{10,13}\\\\n{11,8}\\\\n{11,9}\\\\n{11,10}\\\\n{11,11}\\\\\
+n{11,12}\\\"\\)\[NoBreak] is not a list of numbers or pairs of numbers. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/ListPlot\\\", ButtonNote -> \
+\\\"ListPlot::lpn\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.685274137773305*^9}],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", 
+  "[", "\<\"{8,11}\\n{9,9}\\n{9,10}\\n{9,11}\\n{9,12}\\n{9,13}\\n{9,14}\\n{9,\
+15}\\n{10,9}\\n{10,10}\\n{10,11}\\n{10,12}\\n{10,13}\\n{11,8}\\n{11,9}\\n{11,\
+10}\\n{11,11}\\n{11,12}\"\>", "]"}]], "Output",
+ CellChangeTimes->{3.685274137773993*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"data", " ", "=", " ", 
+  RowBox[{
+  "Import", "[", 
+   "\"\</home/s1220054/Dissertation/Dissertation/src/new.txt\>\"", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.685274188850544*^9, 3.6852741897708683`*^9}}],
+
+Cell[BoxData["\<\"(8,8)\\n(8,9)\\n(8,10)\\n(9,7)\\n(9,8)\\n(9,9)\\n(9,10)\\n(\
+9,11)\\n(9,12)\\n(9,13)\\n(9,14)\\n(10,7)\\n(10,8)\\n(10,9)\\n(10,10)\\n(10,\
+11)\\n(11,9)\\n(11,10)\\n(11,11)\\n(11,12)\"\>"], "Output",
+ CellChangeTimes->{3.685274190371957*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", "data", "]"}]], "Input",
+ CellChangeTimes->{{3.68527419341616*^9, 3.6852741991465197`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"ListPlot", "::", "lpn"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"\[NoBreak]\\!\\(\\\"(8,8)\\\\n(8,9)\\\\n(8,10)\\\\n(9,7)\\\
+\\n(9,8)\\\\n(9,9)\\\\n(9,10)\\\\n(9,11)\\\\n(9,12)\\\\n(9,13)\\\\n(9,14)\\\\\
+n(10,7)\\\\n(10,8)\\\\n(10,9)\\\\n(10,10)\\\\n(10,11)\\\\n(11,9)\\\\n(11,10)\\\
+\\n(11,11)\\\\n(11,12)\\\"\\)\[NoBreak] is not a list of numbers or pairs of \
+numbers. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\
+\", ButtonFrame->None, ButtonData:>\\\"paclet:ref/ListPlot\\\", ButtonNote -> \
+\\\"ListPlot::lpn\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.685274199822261*^9}],
+
+Cell[BoxData[
+ RowBox[{"ListPlot", 
+  "[", "\<\"(8,8)\\n(8,9)\\n(8,10)\\n(9,7)\\n(9,8)\\n(9,9)\\n(9,10)\\n(9,11)\\\
+n(9,12)\\n(9,13)\\n(9,14)\\n(10,7)\\n(10,8)\\n(10,9)\\n(10,10)\\n(10,11)\\n(\
+11,9)\\n(11,10)\\n(11,11)\\n(11,12)\"\>", "]"}]], "Output",
+ CellChangeTimes->{3.685274199823357*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]", 
+  RowBox[{"data", " ", "=", " ", 
+   RowBox[{"Import", "[", 
+    RowBox[{
+    "\"\</home/s1220054/Dissertation/Dissertation/src/new.txt\>\"", ",", " ", 
+     "\"\<CSV\>\""}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.685274351351832*^9, 3.6852743710273733`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"(8\"\>", ",", "\<\"8)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(8\"\>", ",", "\<\"9)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(8\"\>", ",", "\<\"10)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(9\"\>", ",", "\<\"7)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(9\"\>", ",", "\<\"8)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(9\"\>", ",", "\<\"9)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(9\"\>", ",", "\<\"10)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(9\"\>", ",", "\<\"11)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(9\"\>", ",", "\<\"12)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(9\"\>", ",", "\<\"13)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(9\"\>", ",", "\<\"14)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(10\"\>", ",", "\<\"7)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(10\"\>", ",", "\<\"8)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(10\"\>", ",", "\<\"9)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(10\"\>", ",", "\<\"10)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(10\"\>", ",", "\<\"11)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(11\"\>", ",", "\<\"9)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(11\"\>", ",", "\<\"10)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(11\"\>", ",", "\<\"11)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"(11\"\>", ",", "\<\"12)\"\>"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.6852743532352552`*^9, 3.6852743717254553`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", "data", "]"}]], "Input",
+ CellChangeTimes->{{3.685274373723502*^9, 3.685274378291298*^9}}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{0, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{},
+  PlotRange->{{0, 1}, {0, 1}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.685274379630912*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"data", " ", "=", " ", 
+  RowBox[{"Import", "[", 
+   RowBox[{
+   "\"\</home/s1220054/Dissertation/Dissertation/src/new.txt\>\"", ",", " ", 
+    "\"\<CSV\>\""}], "]"}]}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"8", ",", "11"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"8", ",", "12"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"9", ",", "7"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"9", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"9", ",", "9"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"9", ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"9", ",", "11"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"9", ",", "12"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"10", ",", "8"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"10", ",", "9"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"10", ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"10", ",", "11"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"10", ",", "12"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"10", ",", "13"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"10", ",", "14"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"11", ",", "9"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"11", ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"11", ",", "11"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"12", ",", "10"}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.6852744295994663`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ListPlot", "[", "data", "]"}]], "Input"],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{}, 
+    {RGBColor[0.368417, 0.506779, 0.709798], PointSize[0.012833333333333334`],
+      AbsoluteThickness[1.6], PointBox[CompressedData["
+1:eJxTTMoPSmViYGAQBmIQDQEKDhBazQGVrwGllaC0DBpfAY2PTqug8dXQ+Bpo
+6hTQ+OjmoNNqaHx087TQ+Do43IFujhoajTAXAMVCEJs=
+      "]]}, {}}, {}},
+  AspectRatio->NCache[GoldenRatio^(-1), 0.6180339887498948],
+  Axes->{True, True},
+  AxesLabel->{None, None},
+  AxesOrigin->{7.9375, 0},
+  DisplayFunction->Identity,
+  Frame->{{False, False}, {False, False}},
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  Method->{},
+  PlotRange->{{8., 12.}, {0, 14.}},
+  PlotRangeClipping->True,
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, Automatic}]], "Output",
+ CellChangeTimes->{3.6852744481923227`*^9}]
+}, Open  ]]
+},
+WindowSize->{808, 911},
+WindowMargins->{{15, Automatic}, {Automatic, 8}},
+FrontEndVersion->"10.2 for Linux x86 (64-bit) (July 29, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 203, 4, 32, "Input"],
+Cell[786, 28, 492, 10, 23, "Message"],
+Cell[1281, 40, 78, 1, 32, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1396, 46, 249, 6, 55, "Input"],
+Cell[1648, 54, 214, 3, 429, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1899, 62, 231, 6, 32, "Input"],
+Cell[2133, 70, 214, 3, 429, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2384, 78, 130, 2, 32, "Input"],
+Cell[2517, 82, 626, 12, 330, "Message"],
+Cell[3146, 96, 251, 5, 429, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3434, 106, 270, 7, 55, "Input"],
+Cell[3707, 115, 246, 3, 407, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3990, 123, 134, 2, 32, "Input"],
+Cell[4127, 127, 656, 12, 329, "Message"],
+Cell[4786, 141, 283, 5, 407, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5106, 151, 233, 6, 32, "Input"],
+Cell[5342, 159, 258, 3, 451, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[5637, 167, 131, 2, 32, "Input"],
+Cell[5771, 171, 672, 12, 365, "Message"],
+Cell[6446, 185, 295, 5, 451, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6778, 195, 333, 7, 77, "Input"],
+Cell[7114, 204, 1683, 43, 77, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[8834, 252, 130, 2, 32, "Input"],
+Cell[8967, 256, 699, 22, 243, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[9703, 283, 202, 5, 32, "Input"],
+Cell[9908, 290, 1242, 41, 77, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11187, 336, 64, 1, 32, "Input"],
+Cell[11254, 339, 973, 27, 275, "Output"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

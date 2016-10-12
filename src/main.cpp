@@ -175,7 +175,7 @@ Grid::Grid(int p){
 	for (int i =0; i<L; i ++) {
 		for (int j = 0; j<L; j ++) {
 		if(grid[i][j].Inf==1){
-		myfile << i << "," << j << endl;
+		myfile <<i << "," << j << endl;
 			}
 					}
 				}
