@@ -168,13 +168,21 @@ Grid::Grid(int p){
         t = t + 1;
     }
     
-    //writing to the file
+  //writing to the file
     
     ofstream myfile;
-    myfile.open("data.txt");
-    myfile << "yes" << endl;
-    myfile.close();
+    myfile.open("new.txt", ios::trunc);
+	for (int i =0; i<L; i ++) {
+		for (int j = 0; j<L; j ++) {
+		if(grid[i][j].Inf==1){
+		myfile << i << "," << j << endl;
+			}
+					}
+				}
+	//myfile << "wat" << endl;
+   	myfile.close();
 
+  
 }
 
 
@@ -316,17 +324,32 @@ int main() {
     
     
     //printing the grid
-   // cout << G;
+    //cout << G;
     
     //writing to a file
     
     //opening a file and writing positions of the cells to it
     
     
-    
+    //agadshgdahah
     //initalising array d
     int* d ;
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //printing d which shows where the infected cell is
     //d = G.Iteration();
     //for(int i =0; i < 2; i++){
