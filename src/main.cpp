@@ -24,7 +24,10 @@ using namespace std;
 class Cell{
 public:
     int Inf;
+	//introducting cell type
+	int Type;
     
+
     // don't need this attribute because it can make it too complicated for updating after infections
     //int IsAble;
     
@@ -47,7 +50,7 @@ public:
     //initialising interation method array
     int *Iteration();
     
-    int IRight();
+   // int IRight();
     
     // initalising Grid attribute
     Grid(int p);
@@ -87,10 +90,13 @@ Grid::Grid(int p){
             
             //making all cells uninfected
             grid[i][j].Inf = 0;
+		//making all cells white type
+		grid[i][j].Type = 0;
+
             //infecting middle cell
             if (i == (L/2 -1) && j ==(L/2 -1)){
                 grid[i][j].Inf = 1;
-                
+		grid[i][j].Type = 1;
             }
             
         }
@@ -117,7 +123,7 @@ Grid::Grid(int p){
     
     
     
-    while (t <=20) {
+    while (t <=100000) {
         
         int x,y ;
         do {
@@ -132,34 +138,65 @@ Grid::Grid(int p){
         } while(grid[x][y].Inf == 0) ;
         
         
-        
+	
+
         //rightwards infection
-        if(grid[x][(y+1)%L].Inf == 0) {
+        if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1) {
             grid[x][(y+1)%L].Inf = 1;
-            // grid[x][y+1].IRight;
+            grid[x][(y+1)%L].Type = 1;
+        }
+	
+	else if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 2 ) {
+            grid[x][(y+1)%L].Inf = 1;
+            grid[x][(y+1)%L].Type = 2;
         }
         
         //leftwards
-        else if(grid[x][(y-1+L)%L].Inf == 0){
+        else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1 ){
             grid[x][(y-1+L)%L].Inf=1;
+		grid[x][(y-1+L)%L].Type = 1;
+            
+        }
+
+  	else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 2 ){
+            grid[x][(y-1+L)%L].Inf=1;
+		grid[x][(y-1+L)%L].Type = 2;
             
         }
         //upwards
-        else if(grid[(x+1)%L][y].Inf == 0){
+        else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1 ){
             grid[(x+1)%L][y].Inf=1;
+		grid[(x+1)%L][y].Type = 1;
             
         }
+	  else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 2 ){
+            grid[(x+1)%L][y].Inf=1;
+		grid[(x+1)%L][y].Type = 2;
+            
+        }
+
         //downwards
-        else if(grid[(x-1+L)%L][y].Inf==0){
+        else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1){
             grid[(x-1+L)%L][y].Inf=1;
+		grid[(x-1+L)%L][y].Type = 1;
             
         }
-        
+        else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 2){
+            grid[(x-1+L)%L][y].Inf=1;
+		grid[(x-1+L)%L][y].Type = 2;
+            
+        }
         else{
         }
         //cout << x+1 << ' ' << x-1 << ' '<< y+1 << ' ' << y-1 << endl;
         
-        
+        	//Changing Cell types with 1/6 probability
+	if(grid[x][y].Type == 1 && rand()%16 == 2) {
+		grid[x][y].Type = 2;
+		}
+	if(grid[x][y].Type == 2 && rand()%16 == 1) {
+		grid[x][y].Type = 1;
+		}
         
         
         
@@ -174,7 +211,7 @@ Grid::Grid(int p){
     myfile.open("new.txt", ios::trunc);
 	for (int i =0; i<L; i ++) {
 		for (int j = 0; j<L; j ++) {
-		if(grid[i][j].Inf==1){
+		if(grid[i][j].Inf==1 && grid[i][j].Type == 1){
 		myfile <<i << "," << j << endl;
 			}
 					}
@@ -182,7 +219,17 @@ Grid::Grid(int p){
 	//myfile << "wat" << endl;
    	myfile.close();
 
-  
+  ofstream file;
+    file.open("type2.txt");
+	for (int i =0; i<L; i ++) {
+		for (int j = 0; j<L; j ++) {
+		if(grid[i][j].Inf==1 && grid[i][j].Type == 2){
+		file << i << "," << j << endl;
+		}
+						}
+				}
+	//myfile << "wat" << endl;
+   	file.close();
 }
 
 
@@ -262,7 +309,7 @@ Grid::Grid(int p){
 //  grid[x][y+1].Inf = 1;
 //}
 
-//}
+//}for (int i = 0; i < arrayLength; i++) {
 
 
 
@@ -318,7 +365,7 @@ int main() {
     // cout << rand() % 100 + 1 << endl;
     
     //testing with grid of size length and height 100
-    Grid G(20);
+    Grid G(600);
     
     // G = new Grid (10);
     
