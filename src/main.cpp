@@ -190,11 +190,11 @@ Grid::Grid(int p){
         }
         //cout << x+1 << ' ' << x-1 << ' '<< y+1 << ' ' << y-1 << endl;
         
-        	//Changing Cell types with 1/6 probability
-	if(grid[x][y].Type == 1 && rand()%16 == 2) {
+        	//Changing Cell types with some probability
+	if(grid[x][y].Type == 1 && rand()%50 == 2) {
 		grid[x][y].Type = 2;
 		}
-	if(grid[x][y].Type == 2 && rand()%16 == 1) {
+	if(grid[x][y].Type == 2 && rand()%50 == 1) {
 		grid[x][y].Type = 1;
 		}
         
