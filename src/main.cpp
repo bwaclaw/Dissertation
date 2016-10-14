@@ -138,10 +138,10 @@ Grid::Grid(int p){
         } while(grid[x][y].Inf == 0) ;
         
         
-	
-
-        //rightwards infection
-        if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1) {
+	//cripping type one growth
+	//======================================================================
+        //rightwards infection cripping type one
+        if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0) {
             grid[x][(y+1)%L].Inf = 1;
             grid[x][(y+1)%L].Type = 1;
         }
@@ -152,7 +152,7 @@ Grid::Grid(int p){
         }
         
         //leftwards
-        else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1 ){
+        else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0 ){
             grid[x][(y-1+L)%L].Inf=1;
 		grid[x][(y-1+L)%L].Type = 1;
             
@@ -164,7 +164,7 @@ Grid::Grid(int p){
             
         }
         //upwards
-        else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1 ){
+        else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1 && rand()%5 !=0){
             grid[(x+1)%L][y].Inf=1;
 		grid[(x+1)%L][y].Type = 1;
             
@@ -176,7 +176,7 @@ Grid::Grid(int p){
         }
 
         //downwards
-        else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1){
+        else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1 && rand()%5 !=0){
             grid[(x-1+L)%L][y].Inf=1;
 		grid[(x-1+L)%L][y].Type = 1;
             
@@ -191,10 +191,10 @@ Grid::Grid(int p){
         //cout << x+1 << ' ' << x-1 << ' '<< y+1 << ' ' << y-1 << endl;
         
         	//Changing Cell types with some probability
-	if(grid[x][y].Type == 1 && rand()%50 == 2) {
+	if(grid[x][y].Type == 1 && rand()%30 == 2) {
 		grid[x][y].Type = 2;
 		}
-	if(grid[x][y].Type == 2 && rand()%50 == 1) {
+	if(grid[x][y].Type == 2 && rand()%30 == 1) {
 		grid[x][y].Type = 1;
 		}
         
@@ -205,7 +205,7 @@ Grid::Grid(int p){
         t = t + 1;
     }
     
-  //writing to the file
+  //writing to the file infected type one cells
     
     ofstream myfile;
     myfile.open("new.txt", ios::trunc);
@@ -218,7 +218,7 @@ Grid::Grid(int p){
 				}
 	//myfile << "wat" << endl;
    	myfile.close();
-
+	//writing type two infected positions
   ofstream file;
     file.open("type2.txt");
 	for (int i =0; i<L; i ++) {
