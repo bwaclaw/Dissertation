@@ -115,23 +115,29 @@ Grid::Grid(int p){
     
     
     
-    //want a timestep method so we can randomly choose cell that is infected and spread to neighbour
+	//want a timestep method so we can randomly choose cell that is infected and spread to /
+	// neighbour
     
-    //setting time parameter
-    int t = 0;
-    // setting number of infected parameter
-    int n = 1;
-    // setting matching parameter which is 1 if sampled types are the same and 0 otherwise 
-    int k = 0;
-    //defining parameter p	
-    //double phi;
+	//setting time parameter
+	int t = 0;
+	// setting number of infected parameter
+	//double n = 1;
+	// setting matching parameter which is 1 if sampled types are the same and 0 otherwise 
+	double k = 0;
+	
+	double nsamp =0;
+	double phi = 0;
+	//defining parameter p	
+	//double phi;
 	//phi = k/n;
-
-
+	
+	//making a file to pring phi and t to.
+	ofstream timefile;
+	timefile.open("phitime.txt",  ios::trunc);
 	//divide k/n when t is of certain values
 	// let n and k build per infections and then also
 	//if loop for k if sampled infected points are of the same type 
-    
+    //100000
     while (t <=100000) {
         
         int x,y,l,m ;
@@ -154,40 +160,40 @@ Grid::Grid(int p){
         if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0) {
             grid[x][(y+1)%L].Inf = 1;
             grid[x][(y+1)%L].Type = 1;
-		n = n +1;
+		//n = n +1;
         }
 	
 	else if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 2 ) {
             grid[x][(y+1)%L].Inf = 1;
             grid[x][(y+1)%L].Type = 2;
-		n = n +1;
+		//n = n +1;
         }
         
         //leftwards
         else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0 ){
             grid[x][(y-1+L)%L].Inf=1;
 		grid[x][(y-1+L)%L].Type = 1;
-		n = n +1;
+		//n = n +1;
             
         }
 
   	else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 2 ){
             grid[x][(y-1+L)%L].Inf=1;
 		grid[x][(y-1+L)%L].Type = 2;
-		n = n +1;
+		//n = n +1;
             
         }
         //downwards
         else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1 && rand()%5 !=0){
             grid[(x+1)%L][y].Inf=1;
 		grid[(x+1)%L][y].Type = 1;
-		n = n +1;
+		//n = n +1;
             
         }
 	  else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 2 ){
             grid[(x+1)%L][y].Inf=1;
 		grid[(x+1)%L][y].Type = 2;
-		n = n +1;
+		//n = n +1;
             
         }
 
@@ -195,13 +201,13 @@ Grid::Grid(int p){
         else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1 && rand()%5 !=0){
             grid[(x-1+L)%L][y].Inf=1;
 		grid[(x-1+L)%L][y].Type = 1;
-		n = n +1;
+		//n = n +1;
             
         }
         else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 2){
             grid[(x-1+L)%L][y].Inf=1;
 		grid[(x-1+L)%L][y].Type = 2;
-		n = n +1;
+		//n = n +1;
             
         }
         else{
@@ -224,31 +230,40 @@ Grid::Grid(int p){
 
 	//if both random cells are infected and of the same type increase k.
 	if(grid[x][y].Inf == 1 && grid[l][m].Inf == 1){
+	nsamp = nsamp + 1;
 	if(grid[x][y].Type == 2 && grid[l][m].Type == 2){
 	k= k+ 1;
 		}
 	else if(grid[x][y].Type == 1 && grid[l][m].Type == 1){
 	k= k+ 1;
 		}
+	else {
+	}
 	}
 	
-	int a;
-	a = k/n;
-
+	
 	//here write to a new file the value of k/n for 100 timesteps        
-        if(t %1000 == 0){
+        if( fmod(t,1000) == 0 && t >= 2500){
 	//...
+	phi = k/(nsamp);
+	//ofstream timefile;
+	//timefile.open("phitime.txt", ios::trunc);
 	
-	cout << t << " " << n << " " << k << endl;
+	//cout << t << " " << nsamp << " " << k << endl;
 	
-	cout << a << endl;
+	timefile << t << "," << phi << endl;
+
+	//closing the phi file
+	
 	}
         
         t = t + 1;
+	//cout << t << endl;
     }
-    
+    timefile.close();
+	
+
   //writing to the file infected type one cells
-    
     ofstream myfile;
     myfile.open("new.txt", ios::trunc);
 	for (int i =0; i<L; i ++) {
