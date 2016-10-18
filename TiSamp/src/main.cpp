@@ -118,18 +118,28 @@ Grid::Grid(int p){
     //want a timestep method so we can randomly choose cell that is infected and spread to neighbour
     
     //setting time parameter
-    double t = 0;
-    
-    
-    
+    int t = 0;
+    // setting number of infected parameter
+    int n = 1;
+    // setting matching parameter which is 1 if sampled types are the same and 0 otherwise 
+    int k = 0;
+    //defining parameter p	
+    //double phi;
+	//phi = k/n;
+
+
+	//divide k/n when t is of certain values
+	// let n and k build per infections and then also
+	//if loop for k if sampled infected points are of the same type 
     
     while (t <=100000) {
         
-        int x,y ;
+        int x,y,l,m ;
         do {
             x = rand()%L;
             y = rand()%L;
-            
+            l = rand()%L;
+            m = rand()%L;
             //ensuring x,y lie withing L-1 so that we can spread to edge
             //           y = min(i+1,L-2);
             //           x = min(j+1,L-2);
@@ -144,49 +154,58 @@ Grid::Grid(int p){
         if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0) {
             grid[x][(y+1)%L].Inf = 1;
             grid[x][(y+1)%L].Type = 1;
+		n = n +1;
         }
 	
 	else if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 2 ) {
             grid[x][(y+1)%L].Inf = 1;
             grid[x][(y+1)%L].Type = 2;
+		n = n +1;
         }
         
         //leftwards
         else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0 ){
             grid[x][(y-1+L)%L].Inf=1;
 		grid[x][(y-1+L)%L].Type = 1;
+		n = n +1;
             
         }
 
   	else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 2 ){
             grid[x][(y-1+L)%L].Inf=1;
 		grid[x][(y-1+L)%L].Type = 2;
+		n = n +1;
             
         }
-        //upwards
+        //downwards
         else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1 && rand()%5 !=0){
             grid[(x+1)%L][y].Inf=1;
 		grid[(x+1)%L][y].Type = 1;
+		n = n +1;
             
         }
 	  else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 2 ){
             grid[(x+1)%L][y].Inf=1;
 		grid[(x+1)%L][y].Type = 2;
+		n = n +1;
             
         }
 
-        //downwards
+        //upwards
         else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1 && rand()%5 !=0){
             grid[(x-1+L)%L][y].Inf=1;
 		grid[(x-1+L)%L][y].Type = 1;
+		n = n +1;
             
         }
         else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 2){
             grid[(x-1+L)%L][y].Inf=1;
 		grid[(x-1+L)%L][y].Type = 2;
+		n = n +1;
             
         }
         else{
+
         }
         //cout << x+1 << ' ' << x-1 << ' '<< y+1 << ' ' << y-1 << endl;
         
@@ -197,10 +216,33 @@ Grid::Grid(int p){
 	if(grid[x][y].Type == 2 && rand()%30 == 1) {
 		grid[x][y].Type = 1;
 		}
-        
-        
-        
-        
+		
+
+	        
+        //Creating sampling loop
+	//make loop do nothing if the two random points don't contain infected cells
+
+	//if both random cells are infected and of the same type increase k.
+	if(grid[x][y].Inf == 1 && grid[l][m].Inf == 1){
+	if(grid[x][y].Type == 2 && grid[l][m].Type == 2){
+	k= k+ 1;
+		}
+	else if(grid[x][y].Type == 1 && grid[l][m].Type == 1){
+	k= k+ 1;
+		}
+	}
+	
+	int a;
+	a = k/n;
+
+	//here write to a new file the value of k/n for 100 timesteps        
+        if(t %1000 == 0){
+	//...
+	
+	cout << t << " " << n << " " << k << endl;
+	
+	cout << a << endl;
+	}
         
         t = t + 1;
     }
