@@ -130,15 +130,24 @@ Grid::Grid(int p){
 	//defining parameter p	
 	//double phi;
 	//phi = k/n;
-	
+	//double ntimesteps = 100000;
+	//double tnorm = t/ntimesteps;
+
+
 	//making a file to pring phi and t to.
 	ofstream timefile;
 	timefile.open("phitime.txt",  ios::trunc);
+	
+	
+	
 	//divide k/n when t is of certain values
 	// let n and k build per infections and then also
 	//if loop for k if sampled infected points are of the same type 
+
+
+
     //100000
-    while (t <=100000) {
+    while (t <= 100000) {
         
         int x,y,l,m ;
         do {
@@ -158,8 +167,9 @@ Grid::Grid(int p){
 	//======================================================================
         //rightwards infection cripping type one
         if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0) {
-            grid[x][(y+1)%L].Inf = 1;
-            grid[x][(y+1)%L].Type = 1;
+	//if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1) {          
+  	grid[x][(y+1)%L].Inf = 1;
+        grid[x][(y+1)%L].Type = 1;
 		//n = n +1;
         }
 	
@@ -171,7 +181,8 @@ Grid::Grid(int p){
         
         //leftwards
         else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0 ){
-            grid[x][(y-1+L)%L].Inf=1;
+	//else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1){          
+	  grid[x][(y-1+L)%L].Inf=1;
 		grid[x][(y-1+L)%L].Type = 1;
 		//n = n +1;
             
@@ -185,7 +196,8 @@ Grid::Grid(int p){
         }
         //downwards
         else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1 && rand()%5 !=0){
-            grid[(x+1)%L][y].Inf=1;
+	//else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1){          
+	  grid[(x+1)%L][y].Inf=1;
 		grid[(x+1)%L][y].Type = 1;
 		//n = n +1;
             
@@ -199,7 +211,8 @@ Grid::Grid(int p){
 
         //upwards
         else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1 && rand()%5 !=0){
-            grid[(x-1+L)%L][y].Inf=1;
+	//else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1){          
+	  grid[(x-1+L)%L][y].Inf=1;
 		grid[(x-1+L)%L][y].Type = 1;
 		//n = n +1;
             
@@ -219,9 +232,9 @@ Grid::Grid(int p){
 	if(grid[x][y].Type == 1 && rand()%30 == 2) {
 		grid[x][y].Type = 2;
 		}
-	if(grid[x][y].Type == 2 && rand()%30 == 1) {
-		grid[x][y].Type = 1;
-		}
+	//if(grid[x][y].Type == 2 && rand()%30 == 1) {
+	//	grid[x][y].Type = 1;
+	//	}
 		
 
 	        
@@ -243,14 +256,13 @@ Grid::Grid(int p){
 	
 	
 	//here write to a new file the value of k/n for 100 timesteps        
-        if( fmod(t,1000) == 0 && t >= 2500){
+        if( fmod(t,100) == 0 && t >= 2500){
 	//...
 	phi = k/(nsamp);
 	//ofstream timefile;
 	//timefile.open("phitime.txt", ios::trunc);
 	
 	//cout << t << " " << nsamp << " " << k << endl;
-	
 	timefile << t << "," << phi << endl;
 
 	//closing the phi file
