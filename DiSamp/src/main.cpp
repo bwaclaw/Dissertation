@@ -141,9 +141,7 @@ Grid::Grid(int p){
 	//double tnorm = t/ntimesteps;
 
 
-	//making a file to pring phi and t to.
-	ofstream distfile;
-	distfile.open("phidist.txt",  ios::trunc);
+
 	
 	
 	
@@ -173,8 +171,8 @@ Grid::Grid(int p){
 	//cripping type one growth
 	//======================================================================
         //rightwards infection cripping type one
-        if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0) {
-	//if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1) {          
+        //if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0) {
+	if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1) {          
   	grid[x][(y+1)%L].Inf = 1;
         grid[x][(y+1)%L].Type = 1;
 		//n = n +1;
@@ -187,8 +185,8 @@ Grid::Grid(int p){
         }
         
         //leftwards
-        else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0 ){
-	//else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1){          
+        //else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0 ){
+	else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1){          
 	  grid[x][(y-1+L)%L].Inf=1;
 		grid[x][(y-1+L)%L].Type = 1;
 		//n = n +1;
@@ -202,8 +200,8 @@ Grid::Grid(int p){
             
         }
         //downwards
-        else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1 && rand()%5 !=0){
-	//else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1){          
+        //else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1 && rand()%5 !=0){
+	else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1){          
 	  grid[(x+1)%L][y].Inf=1;
 		grid[(x+1)%L][y].Type = 1;
 		//n = n +1;
@@ -217,8 +215,8 @@ Grid::Grid(int p){
         }
 
         //upwards
-        else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1 && rand()%5 !=0){
-	//else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1){          
+        //else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1 && rand()%5 !=0){
+	else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1){          
 	  grid[(x-1+L)%L][y].Inf=1;
 		grid[(x-1+L)%L][y].Type = 1;
 		//n = n +1;
@@ -236,12 +234,12 @@ Grid::Grid(int p){
         //cout << x+1 << ' ' << x-1 << ' '<< y+1 << ' ' << y-1 << endl;
         
         	//Changing Cell types with some probability
-	if(grid[x][y].Type == 1 && rand()%30 == 2) {
+	if(grid[x][y].Type == 1 && rand()%15 == 2) {
 		grid[x][y].Type = 2;
 		}
-	//if(grid[x][y].Type == 2 && rand()%30 == 1) {
-	//	grid[x][y].Type = 1;
-	//	}
+	if(grid[x][y].Type == 2 && rand()%15 == 1) {
+		grid[x][y].Type = 1;
+		}
 		
 
 	        
@@ -249,26 +247,31 @@ Grid::Grid(int p){
 	//make loop do nothing if the two random points don't contain infected cells
 
 	//if both random cells are infected and of the same type increase k.
-	if(grid[x][y].Inf == 1 && grid[l][m].Inf == 1){
-	nsamp = nsamp + 1;
-	if(grid[x][y].Type == 2 && grid[l][m].Type == 2){
-	k= k+ 1;
+	//if(grid[x][y].Inf == 1 && grid[l][m].Inf == 1){
+	//nsamp = nsamp + 1;
+	//if(grid[x][y].Type == 2 && grid[l][m].Type == 2){
+	//k= k+ 1;
 	
+
+
+
+	// NEED TO MOVE THIS DISTANCE SAMPLING OUTSIDE OF THE TIME LOOP
+	//------------------------------------------------------------
 	//we want the distance between these two sampled points
 	//and to print the distance and 
-	phi = k/(nsamp);	
-	dis = Dis(x,y,l,m);
-	distfile << dis << "," << phi << endl;
-		}
-	else if(grid[x][y].Type == 1 && grid[l][m].Type == 1){
-	k= k+ 1;
-	phi = k/(nsamp);	
-	dis = Dis(x,y,l,m);
-	distfile << dis << "," << phi << endl;
-		}
-	else {
-	}
-	}
+	//phi = k/(nsamp);	
+	//dis = Dis(x,y,l,m);
+	//distfile << dis << "," << phi << endl;
+	//	}
+	//else if(grid[x][y].Type == 1 && grid[l][m].Type == 1){
+	//k= k+ 1;
+	//phi = k/(nsamp);	
+	//dis = Dis(x,y,l,m);
+	//distfile << phi << "," << dis << endl;
+	//	}
+	//else {
+	//}
+	//}
 	
 	
 	//here write to a new file the value of k/n for 100 timesteps        
@@ -288,9 +291,60 @@ Grid::Grid(int p){
         t = t + 1;
 	//cout << t << endl;
     }
-    distfile.close();
+   
+
+
+
+
+	//making a file to pring phi and distance to.
+	ofstream distfile;
+	distfile.open("phidist.txt",  ios::trunc);
+	int x,y,l,m ;
+	for(int i = 0; i< 100000000; i++){
+	x = rand()%L;
+        y = rand()%L;
+        l = rand()%L;
+        m = rand()%L;
+
+ 	//Creating sampling loop
+	//make loop do nothing if the two random points don't contain infected cells
+
+	//if both random cells are infected and of the same type increase k.
+	
+	
+	
+	if(grid[x][y].Inf == 1 && grid[l][m].Inf == 1){
+	nsamp = nsamp + 1;
+	if(grid[x][y].Type == 2 && grid[l][m].Type == 2){
+	k= k+ 1;
 	
 
+
+
+	// NEED TO MOVE THIS DISTANCE SAMPLING OUTSIDE OF THE TIME LOOP
+	//------------------------------------------------------------
+	//we want the distance between these two sampled points
+	//and to print the distance and 
+	
+	phi = k/(nsamp);	
+	dis = Dis(x,y,l,m);
+	distfile << dis << "," << phi << endl;
+		}
+	else if(grid[x][y].Type == 1 && grid[l][m].Type == 1){
+	k= k+ 1;
+	//phi = k/(nsamp);	
+	dis = Dis(x,y,l,m);
+	distfile << dis << "," << phi << endl;
+		}
+	else { //cout << i << endl;
+	}
+	}
+	}
+	
+	//closing the distance file	 
+	distfile.close();
+
+	
   //writing to the file infected type one cells
     ofstream myfile;
     myfile.open("new.txt", ios::trunc);
