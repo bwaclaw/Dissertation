@@ -234,10 +234,10 @@ Grid::Grid(int p){
         //cout << x+1 << ' ' << x-1 << ' '<< y+1 << ' ' << y-1 << endl;
         
         	//Changing Cell types with some probability
-	if(grid[x][y].Type == 1 && rand()%15 == 2) {
+	if(grid[x][y].Type == 1 && rand()%50 == 2) {
 		grid[x][y].Type = 2;
 		}
-	if(grid[x][y].Type == 2 && rand()%15 == 1) {
+	if(grid[x][y].Type == 2 && rand()%50 == 1) {
 		grid[x][y].Type = 1;
 		}
 		
@@ -297,14 +297,16 @@ Grid::Grid(int p){
 
 
 	//making a file to pring phi and distance to.
-	ofstream distfile;
-	distfile.open("phidist.txt",  ios::trunc);
-	int x,y,l,m ;
-	for(int i = 0; i< 100000000; i++){
-	x = rand()%L;
-        y = rand()%L;
-        l = rand()%L;
-        m = rand()%L;
+	//ofstream distfile;
+	//distfile.open("phidist.txt",  ios::trunc);
+	
+    //creating distance sampling loop after the tumour has been created
+    //int x,y,l,m ;
+	//for(int i = 0; i< 100000000; i++){
+     //   x = rand()%L;
+        //y = rand()%L;
+        //l = rand()%L;
+       // m = rand()%L;
 
  	//Creating sampling loop
 	//make loop do nothing if the two random points don't contain infected cells
@@ -313,10 +315,10 @@ Grid::Grid(int p){
 	
 	
 	
-	if(grid[x][y].Inf == 1 && grid[l][m].Inf == 1){
-	nsamp = nsamp + 1;
-	if(grid[x][y].Type == 2 && grid[l][m].Type == 2){
-	k= k+ 1;
+	//if(grid[x][y].Inf == 1 && grid[l][m].Inf == 1){
+	//nsamp = nsamp + 1;
+	//if(grid[x][y].Type == 2 && grid[l][m].Type == 2){
+	//k= k+ 1;
 	
 
 
@@ -326,23 +328,23 @@ Grid::Grid(int p){
 	//we want the distance between these two sampled points
 	//and to print the distance and 
 	
-	phi = k/(nsamp);	
-	dis = Dis(x,y,l,m);
-	distfile << dis << "," << phi << endl;
-		}
-	else if(grid[x][y].Type == 1 && grid[l][m].Type == 1){
-	k= k+ 1;
+	//phi = k/(nsamp);
+	//dis = Dis(x,y,l,m);
+	//distfile << dis << "," << phi << endl;
+	//	}
+	//else if(grid[x][y].Type == 1 && grid[l][m].Type == 1){
+	//k= k+ 1;
 	//phi = k/(nsamp);	
-	dis = Dis(x,y,l,m);
-	distfile << dis << "," << phi << endl;
-		}
-	else { //cout << i << endl;
-	}
-	}
-	}
+	//dis = Dis(x,y,l,m);
+	//distfile << dis << "," << phi << endl;
+	//	}
+	//else { //cout << i << endl;
+	//}
+	//}
+	//}
 	
 	//closing the distance file	 
-	distfile.close();
+	//distfile.close();
 
 	
   //writing to the file infected type one cells
@@ -442,9 +444,9 @@ Grid::Grid(int p){
 
 //int square
 // int y = min(i+1,L-2);
-//int x = min(j+1,L-2);
+// int x = min(j+1,L-2);
 //rightwards infection
-//if(grid[x][y+1].Inf == 0) {
+// if(grid[x][y+1].Inf == 0) {
 //  grid[x][y+1].Inf = 1;
 //}
 
