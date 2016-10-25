@@ -297,24 +297,102 @@ Grid::Grid(int p){
 
 
 	//making a file to pring phi and distance to.
-	//ofstream distfile;
-	//distfile.open("phidist.txt",  ios::trunc);
+	ofstream distfile;
+	distfile.open("phidist.txt",  ios::trunc);
+
+//	while (nsamp <= 100000) {
+        
+//        int x,y,l,m ;
+//        do {
+//            x = rand()%L;
+//            y = rand()%L;
+           // l = rand()%L;
+           // m = rand()%L;
+           
+//        } while(grid[x][y].Inf == 0) ;
 	
+//	//finding an infected point to sample around
+//	if(grid[i][j].Inf==1){	
+	
+	//sampling this point 
+//	for(int i = 0; i<1000; i++){	
+//	l = rand()%L;
+ //       m = rand()%L;
+//	//if new random point has a cell present and 
+//	if(grid[l][m].Inf==1 && Dis(x,y,l,m) ){
+//	nsamp = nsamp +1;
+	
+//	}
+//
+//	}
+//	
+//	}
+//
+		
+//	}
+
+
+
+//===================================================================================
+//===================================================================================
     //creating distance sampling loop after the tumour has been created
-    //int x,y,l,m ;
-	//for(int i = 0; i< 100000000; i++){
-     //   x = rand()%L;
+	//    int x,y,l,m ;
+	//for(int i = 0; i< 10000; i++){
+        //x = rand()%L;
         //y = rand()%L;
         //l = rand()%L;
-       // m = rand()%L;
+        //m = rand()%L;
 
  	//Creating sampling loop
 	//make loop do nothing if the two random points don't contain infected cells
 
-	//if both random cells are infected and of the same type increase k.
+	//want to select a ramdon cell and sample a number of random points around it
 	
 	
+	//if(grid[x][y].Inf == 1){
+	//inside this loop we will pick a number of other points and sample them
 	
+	//for(int i = 0; i<10000; i++){	
+	//l = rand()%L;
+        //m = rand()%L;
+	
+	//if(grid[l][m].Inf==1){
+	
+	//nsamp = nsamp + 1;
+	
+	//if(grid[x][y].Type == 1 && grid[l][m].Type == 1){
+	//if cell types are the same, increase numerator of fraction	
+	//k=k+1;
+
+	//phi = k/(nsamp);
+	//dis = Dis(x,y,l,m);
+	//distfile << dis << "," << phi << endl;
+	//}
+	
+	//else if(grid[x][y].Type == 2 && grid[l][m].Type == 2){
+	//k=k+1;
+
+	//phi = k/(nsamp);
+	//dis = Dis(x,y,l,m);
+	//distfile << dis << "," << phi << endl;
+	//}
+	//else { //cout << i << endl;
+	//}
+	
+	//}
+	//}
+	//}
+	//}
+
+//==========================================================================
+//==========================================================================
+
+
+
+	
+	//closing the distance file	 
+	distfile.close();
+
 	//if(grid[x][y].Inf == 1 && grid[l][m].Inf == 1){
 	//nsamp = nsamp + 1;
 	//if(grid[x][y].Type == 2 && grid[l][m].Type == 2){
@@ -331,20 +409,19 @@ Grid::Grid(int p){
 	//phi = k/(nsamp);
 	//dis = Dis(x,y,l,m);
 	//distfile << dis << "," << phi << endl;
-	//	}
+		//}
 	//else if(grid[x][y].Type == 1 && grid[l][m].Type == 1){
 	//k= k+ 1;
 	//phi = k/(nsamp);	
 	//dis = Dis(x,y,l,m);
 	//distfile << dis << "," << phi << endl;
-	//	}
+		//}
 	//else { //cout << i << endl;
 	//}
 	//}
 	//}
 	
-	//closing the distance file	 
-	//distfile.close();
+	
 
 	
   //writing to the file infected type one cells
@@ -550,5 +627,6 @@ int main() {
     //system("pause") ;
     return 0;
 } 
+
 
 
