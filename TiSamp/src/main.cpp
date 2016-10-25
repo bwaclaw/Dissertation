@@ -120,8 +120,9 @@ Grid::Grid(int p){
     
 	//setting time parameter
 	int t = 0;
+	double a = t/5;
 	// setting number of infected parameter
-	//double n = 1;
+	double n = 1;
 	// setting matching parameter which is 1 if sampled types are the same and 0 otherwise 
 	double k = 0;
 	
@@ -138,7 +139,29 @@ Grid::Grid(int p){
 	ofstream timefile;
 	timefile.open("phitime.txt",  ios::trunc);
 	
+	//making file to print cell positions to TYPE 1
+	ofstream myfile;
+	myfile.open("new.txt", ios::trunc);
+	ofstream myfile2;
+	myfile2.open("new2.txt", ios::trunc);
+	ofstream myfile3;
+	myfile3.open("new3.txt", ios::trunc);
+	ofstream myfile4;
+	myfile4.open("new4.txt", ios::trunc);
+	ofstream myfile5;
+	myfile5.open("new5.txt", ios::trunc);
 	
+	//making file to print type 2 cell positions
+	ofstream file;
+	file.open("type2.txt");
+	ofstream file2;
+	file2.open("type2_2.txt");
+	ofstream file3;
+	file3.open("type2_3.txt");
+	ofstream file4;
+	file4.open("type2_4.txt");
+	ofstream file5;
+	file5.open("type2_5.txt");
 	
 	//divide k/n when t is of certain values
 	// let n and k build per infections and then also
@@ -170,13 +193,13 @@ Grid::Grid(int p){
 	//if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1) {          
   	grid[x][(y+1)%L].Inf = 1;
         grid[x][(y+1)%L].Type = 1;
-		//n = n +1;
+		n = n +1;
         }
 	
 	else if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 2 ) {
             grid[x][(y+1)%L].Inf = 1;
             grid[x][(y+1)%L].Type = 2;
-		//n = n +1;
+		n = n +1;
         }
         
         //leftwards
@@ -184,14 +207,14 @@ Grid::Grid(int p){
 	//else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1){          
 	  grid[x][(y-1+L)%L].Inf=1;
 		grid[x][(y-1+L)%L].Type = 1;
-		//n = n +1;
+		n = n +1;
             
         }
 
   	else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 2 ){
             grid[x][(y-1+L)%L].Inf=1;
 		grid[x][(y-1+L)%L].Type = 2;
-		//n = n +1;
+		n = n +1;
             
         }
         //downwards
@@ -199,13 +222,13 @@ Grid::Grid(int p){
 	//else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1){          
 	  grid[(x+1)%L][y].Inf=1;
 		grid[(x+1)%L][y].Type = 1;
-		//n = n +1;
+		n = n +1;
             
         }
 	  else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 2 ){
             grid[(x+1)%L][y].Inf=1;
 		grid[(x+1)%L][y].Type = 2;
-		//n = n +1;
+		n = n +1;
             
         }
 
@@ -214,13 +237,13 @@ Grid::Grid(int p){
 	//else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1){          
 	  grid[(x-1+L)%L][y].Inf=1;
 		grid[(x-1+L)%L][y].Type = 1;
-		//n = n +1;
+		n = n +1;
             
         }
         else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 2){
             grid[(x-1+L)%L][y].Inf=1;
 		grid[(x-1+L)%L][y].Type = 2;
-		//n = n +1;
+		n = n +1;
             
         }
         else{
@@ -232,9 +255,9 @@ Grid::Grid(int p){
 	if(grid[x][y].Type == 1 && rand()%30 == 2) {
 		grid[x][y].Type = 2;
 		}
-	//if(grid[x][y].Type == 2 && rand()%30 == 1) {
-	//	grid[x][y].Type = 1;
-	//	}
+	if(grid[x][y].Type == 2 && rand()%30 == 1) {
+		grid[x][y].Type = 1;
+		}
 		
 
 	        
@@ -263,33 +286,133 @@ Grid::Grid(int p){
 	//timefile.open("phitime.txt", ios::trunc);
 	
 	//cout << t << " " << nsamp << " " << k << endl;
-	timefile << t << "," << phi << endl;
+	timefile << n << "," << phi << endl;
 
 	//closing the phi file
 	
 	}
+
+//===========================================================================
+//===========================================================================	
+	if( t == 20000){
+	for (int i =0; i<L; i ++) {
+	for (int j = 0; j<L; j ++) {
+	if(grid[i][j].Inf==1 && grid[i][j].Type == 1){
+	myfile2 <<i << "," << j << endl;
+	}
+	
+	if(grid[i][j].Inf==1 && grid[i][j].Type == 2){
+	file2 <<i << "," << j << endl;						
+						}
+	}
+	}
+	}
+
+//===========================================================================	
+		
+//===========================================================================	
+	if( t == 40000){
+	for (int i =0; i<L; i ++) {
+	for (int j = 0; j<L; j ++) {
+	if(grid[i][j].Inf==1 && grid[i][j].Type == 1){
+	myfile3 <<i << "," << j << endl;
+	}
+	
+	if(grid[i][j].Inf==1 && grid[i][j].Type == 2){
+	file3 <<i << "," << j << endl;						
+						}
+	}
+	}
+	}
+//===========================================================================		
+//===========================================================================
+	if( t == 60000){
+	for (int i =0; i<L; i ++) {
+	for (int j = 0; j<L; j ++) {
+	if(grid[i][j].Inf==1 && grid[i][j].Type == 1){
+	myfile4 <<i << "," << j << endl;
+	}
+	
+	if(grid[i][j].Inf==1 && grid[i][j].Type == 2){
+	file4 <<i << "," << j << endl;						
+						}
+	}
+	}
+	}
+
+
+
+
+//===========================================================================
         
+	
+//===========================================================================
+	if( t == 80000){
+	for (int i =0; i<L; i ++) {
+	for (int j = 0; j<L; j ++) {
+	if(grid[i][j].Inf==1 && grid[i][j].Type == 1){
+	myfile5 <<i << "," << j << endl;
+	}
+	
+	if(grid[i][j].Inf==1 && grid[i][j].Type == 2){
+	file5 <<i << "," << j << endl;						
+						}
+	}
+	}
+	}
+
+
+
+
+//===========================================================================	
+	
+	
+	
+	
         t = t + 1;
 	//cout << t << endl;
     }
-    timefile.close();
 	
 
+	//closing files
+	    
+	timefile.close();
+	
+	myfile2.close();
+	file2.close();
+	myfile3.close();
+	file3.close();
+	myfile4.close();
+	file4.close();
+	myfile5.close();
+	file5.close();
+
+
+
   //writing to the file infected type one cells
-    ofstream myfile;
-    myfile.open("new.txt", ios::trunc);
+//    ofstream myfile;
+//    myfile.open("new.txt", ios::trunc);
 	for (int i =0; i<L; i ++) {
 		for (int j = 0; j<L; j ++) {
 		if(grid[i][j].Inf==1 && grid[i][j].Type == 1){
 		myfile <<i << "," << j << endl;
 			}
+//	if(grid[i][j].Inf==1 && grid[i][j].Type == 2){
+//		file << i << "," << j << endl;
+//		}
 					}
 				}
 	//myfile << "wat" << endl;
-   	myfile.close();
+	myfile.close();
+//	file.close();
+ 
+
+
 	//writing type two infected positions
-  ofstream file;
-    file.open("type2.txt");
+
+
+//  ofstream file;
+//    file.open("type2.txt");
 	for (int i =0; i<L; i ++) {
 		for (int j = 0; j<L; j ++) {
 		if(grid[i][j].Inf==1 && grid[i][j].Type == 2){
@@ -297,8 +420,8 @@ Grid::Grid(int p){
 		}
 						}
 				}
-	//myfile << "wat" << endl;
-   	file.close();
+//	//myfile << "wat" << endl;
+	file.close();
 }
 
 
