@@ -135,6 +135,7 @@ Grid::Grid(int p){
 	double nsamp =0;
 	double phi = 0;
 	double dis;
+
 	//defining parameter p	
 	//double phi;
 	//double ntimesteps = 100000;
@@ -152,7 +153,7 @@ Grid::Grid(int p){
 
 
     //100000
-    while (t <= 100000) {
+    while (t <= 10000000) {
         
         int x,y,l,m ;
         do {
@@ -245,7 +246,7 @@ Grid::Grid(int p){
 	        
         //Creating sampling loop
 	//make loop do nothing if the two random points don't contain infected cells
-
+	
 	//if both random cells are infected and of the same type increase k.
 	//if(grid[x][y].Inf == 1 && grid[l][m].Inf == 1){
 	//nsamp = nsamp + 1;
@@ -294,11 +295,71 @@ Grid::Grid(int p){
    
 
 
-
-
 	//making a file to pring phi and distance to.
 	ofstream distfile;
 	distfile.open("phidist.txt",  ios::trunc);
+
+	
+	int a = 1.5*L;
+	int hist[a];
+
+	for(int i=0;i<=a;i++){
+	hist[i]=0;
+	//distfile << i << "," << hist[i] << endl;
+	}
+
+	int x,y,l,m;
+	for(int i =0; i<1000000; i++){
+	x = rand()%L;
+        y = rand()%L;
+	l = rand()%L;
+	m = rand()%L;
+	
+	
+	//if two random points have cells present
+	if(grid[x][y].Inf == grid[l][m].Inf && grid[x][y].Inf != 0){
+	
+	//if they're of the same type the
+	if(grid[x][y].Type == grid[l][m].Type){
+	int dis = int( Dis(x,y,l,m));
+	
+	hist[dis] = hist[dis] + 1;
+	//nsamp++;
+			}
+	
+	
+
+	//closing double infection if loop
+		}	
+	//closing for loop	
+	}
+	
+	//int npoints = 0;	
+	//for(int i=0;i<=a;i++){	
+//	distfile << i << "," << hist[i] << endl;
+	//npoints += hist[i];
+	//}
+
+	
+	
+	for(int i=0;i<=a;i++){	
+	//hist[i] = hist[i]/npoints;
+	distfile << i << "," << hist[i] << endl;
+	//cout << i << hist[i] << endl;	
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //	while (nsamp <= 100000) {
         
