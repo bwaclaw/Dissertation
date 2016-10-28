@@ -334,17 +334,17 @@ Grid::Grid(int p){
 	//closing for loop	
 	}
 	
-	//int npoints = 0;	
-	//for(int i=0;i<=a;i++){	
+	int npoints = 0;	
+	for(int i=0;i<=a;i++){	
 //	distfile << i << "," << hist[i] << endl;
-	//npoints += hist[i];
-	//}
+	npoints += hist[i];
+	}
 
 	
-	
+	double histd[a];
 	for(int i=0;i<=a;i++){	
-	//hist[i] = hist[i]/npoints;
-	distfile << i << "," << hist[i] << endl;
+	histd[a] = hist[i]/(double)npoints;
+	distfile << i << "," << histd[a] << endl;
 	//cout << i << hist[i] << endl;	
 	}
 
@@ -422,7 +422,7 @@ Grid::Grid(int p){
 	//nsamp = nsamp + 1;
 	
 	//if(grid[x][y].Type == 1 && grid[l][m].Type == 1){
-	//if cell types are the same, increase numerator of fraction	
+	//if cell types are the same, increase numerator of fraction	A major in Physics consists of at least 24 credit points of Senior Physics, which must include a Semester 1 Core unit (PHYS3040, PHYS3940 or PHYS3941), a Semester 2 Core unit (PHYS3060, PHYS3960 or PHYS3961) and two Options units (usually one per semester).
 	//k=k+1;
 
 	//phi = k/(nsamp);
