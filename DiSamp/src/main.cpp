@@ -6,6 +6,23 @@
 //  Copyright © 2016 Jason Grealey. All rights reserved.
 //
 
+//################################################################################################################
+//################THINGS TO DO####################################################################################
+//################################################################################################################
+//################################################################################################################
+	//begin to implement many types of cells and their mutation	
+	//look at cripping the normal type one cells
+	//being to sample Xi, by bining types, then counting # of times a mut type appeared and bin it into Xi
+	//plot Xi against it's bins
+
+	//think about how to print these new types of cells for a diagram
+//################################################################################################################
+//################################################################################################################
+//################################################################################################################
+//################################################################################################################
+//################################################################################################################
+
+
 #include <iostream>
 #include <cmath>
 #include <cstdlib>
@@ -91,31 +108,23 @@ Grid::Grid(int p){
         
         for (int j =0; j<L; j ++) {
             
-            //giving every cell in grid 8 open neighbours
             
-            // grid[i][j].IsAble = 8;
-            
-            //making all cells uninfected
-            grid[i][j].Inf = 0;
+		//making all cells uninfected
+		grid[i][j].Inf = 0;
 		//making all cells white type
 		grid[i][j].Type = 0;
 
-            //infecting middle cell
-            if (i == (L/2 -1) && j ==(L/2 -1)){
-                grid[i][j].Inf = 1;
+		//infecting middle cell
+		if (i == (L/2 -1) && j ==(L/2 -1)){
+		grid[i][j].Inf = 1;
 		grid[i][j].Type = 1;
-            }
+						}
             
-        }
+				}
         
         
-    }
-    // infecting a few more cells at the initlisation of the grid
-    // grid [5][4].Inf=1;
-    //grid [4][5].Inf=1;
-    //grid [5][5].Inf=1;
-    //grid [4][5].Inf=1;
-    //grid [5][5].Inf=1;
+		}
+   
     
     
     
@@ -140,9 +149,7 @@ Grid::Grid(int p){
 	//double phi;
 	//double ntimesteps = 100000;
 	//double tnorm = t/ntimesteps;
-
-
-
+	
 	
 	
 	
@@ -153,7 +160,7 @@ Grid::Grid(int p){
 
 
     //100000
-    while (t <= 10000000) {
+    while (t <= 1000000) {
         
         int x,y,l,m ;
         do {
@@ -169,66 +176,77 @@ Grid::Grid(int p){
         } while(grid[x][y].Inf == 0) ;
         
         
-	//cripping type one growth
-	//======================================================================
-        //rightwards infection cripping type one
+	
+//===================================rightwards===================================
+        
         //if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0) {
-	if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1) {          
+	
+	if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type != 0) {          
   	grid[x][(y+1)%L].Inf = 1;
-        grid[x][(y+1)%L].Type = 1;
+        grid[x][(y+1)%L].Type = grid[x][y].Type;
 		//n = n +1;
         }
 	
-	else if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 2 ) {
-            grid[x][(y+1)%L].Inf = 1;
-            grid[x][(y+1)%L].Type = 2;
+	//else if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 2 ) {
+        //    grid[x][(y+1)%L].Inf = 1;
+        //    grid[x][(y+1)%L].Type = 2;
 		//n = n +1;
-        }
+        //}
         
-        //leftwards
-        //else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0 ){
-	else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1){          
-	  grid[x][(y-1+L)%L].Inf=1;
-		grid[x][(y-1+L)%L].Type = 1;
+//==================================leftwards=============================================
+      
+	
+	  //else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0 ){
+	else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type != 0){          
+	  	grid[x][(y-1+L)%L].Inf=1;
+		grid[x][(y-1+L)%L].Type = grid[x][y].Type;
 		//n = n +1;
             
         }
 
-  	else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 2 ){
-            grid[x][(y-1+L)%L].Inf=1;
-		grid[x][(y-1+L)%L].Type = 2;
+  	//else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 2 ){
+        //    grid[x][(y-1+L)%L].Inf=1;
+	//	grid[x][(y-1+L)%L].Type = 2;
 		//n = n +1;
             
-        }
-        //downwards
-        //else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1 && rand()%5 !=0){
-	else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1){          
-	  grid[(x+1)%L][y].Inf=1;
-		grid[(x+1)%L][y].Type = 1;
-		//n = n +1;
-            
-        }
-	  else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 2 ){
-            grid[(x+1)%L][y].Inf=1;
-		grid[(x+1)%L][y].Type = 2;
-		//n = n +1;
-            
-        }
+       // }
+        
 
-        //upwards
-        //else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1 && rand()%5 !=0){
-	else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1){          
-	  grid[(x-1+L)%L][y].Inf=1;
-		grid[(x-1+L)%L][y].Type = 1;
+//=========================downwards====================================================
+       
+	
+	 //else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1 && rand()%5 !=0){
+	else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type != 0){          
+	  	grid[(x+1)%L][y].Inf=1;
+		grid[(x+1)%L][y].Type = grid[x][y].Type;
 		//n = n +1;
             
         }
-        else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 2){
-            grid[(x-1+L)%L][y].Inf=1;
-		grid[(x-1+L)%L][y].Type = 2;
+	//  else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 2 ){
+        //    grid[(x+1)%L][y].Inf=1;
+	//	grid[(x+1)%L][y].Type = 2;
+	//	//n = n +1;
+	//   
+	// }
+
+//===============================upwards================================================
+        
+	
+	//else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1 && rand()%5 !=0){
+	else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type != 0){          
+		//making a cell present on this above point	  	
+		grid[(x-1+L)%L][y].Inf=1;
+		//coyping type (mut)
+		grid[(x-1+L)%L][y].Type = grid[x][y].Type;
 		//n = n +1;
             
         }
+       // else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 2){
+       //     grid[(x-1+L)%L][y].Inf=1;
+	//		grid[(x-1+L)%L][y].Type = 2;
+	//	//n = n +1;
+        //    
+        //}
         else{
 
         }
@@ -422,7 +440,7 @@ Grid::Grid(int p){
 	//nsamp = nsamp + 1;
 	
 	//if(grid[x][y].Type == 1 && grid[l][m].Type == 1){
-	//if cell types are the same, increase numerator of fraction	A major in Physics consists of at least 24 credit points of Senior Physics, which must include a Semester 1 Core unit (PHYS3040, PHYS3940 or PHYS3941), a Semester 2 Core unit (PHYS3060, PHYS3960 or PHYS3961) and two Options units (usually one per semester).
+
 	//k=k+1;
 
 	//phi = k/(nsamp);
