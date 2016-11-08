@@ -30,6 +30,7 @@
 #include <vector>
 #include <string>
 #include <ctime>
+#include <sstream>
 
 using namespace std;
 
@@ -144,7 +145,10 @@ Grid::Grid(int p){
 	double nsamp =0;
 	double phi = 0;
 	double dis;
+	int types = 20;
 
+	string filename;
+	ofstream files;
 	//defining parameter p	
 	//double phi;
 	//double ntimesteps = 100000;
@@ -252,13 +256,36 @@ Grid::Grid(int p){
         }
         //cout << x+1 << ' ' << x-1 << ' '<< y+1 << ' ' << y-1 << endl;
         
-        	//Changing Cell types with some probability
-	if(grid[x][y].Type == 1 && rand()%50 == 2) {
-		grid[x][y].Type = 2;
+	//Changing Cell types with some probability
+	//having loop of different mutation types
+	//the mutations can only go backwards or forwards by one here
+	
+	
+	for(int i=1;i<=types;i++){
+	if(grid[x][y].Type == i && rand()%50 == 2) {
+		grid[x][y].Type = i+1;
 		}
-	if(grid[x][y].Type == 2 && rand()%50 == 1) {
-		grid[x][y].Type = 1;
+	}
+	
+	for(int i=1;i<=types;i++){
+	if(grid[x][y].Type == i && rand()%50 == 2) {
+		grid[x][y].Type = i-1;
 		}
+	}	
+
+
+
+
+
+
+
+	//	}
+	//if(grid[x][y].Type == 1 && rand()%50 == 2) {
+	//	grid[x][y].Type = 2;
+	//	}
+	//if(grid[x][y].Type == 2 && rand()%50 == 1) {
+	//	grid[x][y].Type = 1;
+	//	}
 		
 
 	        
@@ -500,33 +527,103 @@ Grid::Grid(int p){
 	//}
 	//}
 	
+
+
+
+for (int i = 1; i < types; i++) {
+	stringstream a;
+	a << i;
+	//making many types of files
+	filename = "type_" + a.str();
+	filename += ".txt";
+	//checking they exist
+//	cout << filename << endl;
+	files.open(filename.c_str());
 	
+	files << 0 << ',' << 0 << endl;
+	 
+	for (int l =0; l<L; l ++) {
+		for (int j = 0; j<L; j ++) {
+		if(grid[l][j].Inf==1 && grid[l][j].Type == i){
+		files << l << "," << j << endl;
+			}
+					}
+		
+				
+				}         
+	files.close();
+	//files[l] << "Some rezult " << ;
+    
+	
+	
+}	
+	
+	
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    string name = "type_";     //base pattern of file name
+//    ofstream files[types];      //creating array of number of  int 'types' output file streams
+//    for(int l = 1; l <= types; ++l) {   //open all file streams 
+//        files[l].open(name + char('l') + ".txt");
+ //   }
+//
+ //   for(int l = 1; l <= types; ++l) { // write value of i to i-th stream
+//	for (int i =0; i<L; i ++) {
+//		for (int j = 0; j<L; j ++) {
+//		if(grid[i][j].Inf==1 && grid[i][j].Type == l){
+//		files[l] << i << "," << j << endl;
+//			}
+//					}
+//				}         
+	
+	
+	//files[l] << "Some rezult " << ;
+//    }
 
 	
   //writing to the file infected type one cells
-    ofstream myfile;
-    myfile.open("new.txt", ios::trunc);
-	for (int i =0; i<L; i ++) {
-		for (int j = 0; j<L; j ++) {
-		if(grid[i][j].Inf==1 && grid[i][j].Type == 1){
-		myfile <<i << "," << j << endl;
-			}
-					}
-				}
+  //  ofstream myfile;
+  //  myfile.open("new.txt", ios::trunc);
+	//	for (int i =0; i<L; i ++) {
+	//	for (int j = 0; j<L; j ++) {
+	//	if(grid[i][j].Inf==1 && grid[i][j].Type == 1){
+	//	myfile <<i << "," << j << endl;
+	//		}
+	//				}
+	//			}
 	//myfile << "wat" << endl;
-   	myfile.close();
-	//writing type two infected positions
-  ofstream file;
-    file.open("type2.txt");
-	for (int i =0; i<L; i ++) {
-		for (int j = 0; j<L; j ++) {
-		if(grid[i][j].Inf==1 && grid[i][j].Type == 2){
-		file << i << "," << j << endl;
-		}
-						}
-				}
+//   	myfile.close();
+//	//writing type two infected positions
+ // ofstream file;
+   // file.open("type2.txt");
+	//for (int i =0; i<L; i ++) {
+	//	for (int j = 0; j<L; j ++) {
+	//	if(grid[i][j].Inf==1 && grid[i][j].Type == 2){
+	//	file << i << "," << j << endl;
+	//	}
+	//					}
+	//			}
 	//myfile << "wat" << endl;
-   	file.close();
+   	//file.close();
 }
 
 
