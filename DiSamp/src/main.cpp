@@ -145,7 +145,7 @@ Grid::Grid(int p){
 	double nsamp =0;
 	double phi = 0;
 	double dis;
-	int types = 20;
+	int types = 10;
 
 	string filename;
 	ofstream files;
@@ -164,7 +164,7 @@ Grid::Grid(int p){
 
 
     //100000
-    while (t <= 1000000) {
+    while (t <= 10000000) {
         
         int x,y,l,m ;
         do {
@@ -185,12 +185,17 @@ Grid::Grid(int p){
         
         //if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0) {
 	
-	if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type != 0) {          
+	if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type != 0 && grid[x][y].Type !=1) {          
   	grid[x][(y+1)%L].Inf = 1;
         grid[x][(y+1)%L].Type = grid[x][y].Type;
 		//n = n +1;
         }
 	
+	else if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0 ) {          
+  	grid[x][(y+1)%L].Inf = 1;
+        grid[x][(y+1)%L].Type = grid[x][y].Type;
+		//n = n +1;
+        }
 	//else if(grid[x][(y+1)%L].Inf == 0 && grid[x][y].Type == 2 ) {
         //    grid[x][(y+1)%L].Inf = 1;
         //    grid[x][(y+1)%L].Type = 2;
@@ -201,13 +206,20 @@ Grid::Grid(int p){
       
 	
 	  //else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 1 && rand()%5 !=0 ){
-	else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type != 0){          
+	else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type != 0 && grid[x][y].Type !=1){          
 	  	grid[x][(y-1+L)%L].Inf=1;
 		grid[x][(y-1+L)%L].Type = grid[x][y].Type;
 		//n = n +1;
             
         }
 
+	
+	else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type ==1 && rand()%5 !=0 ){          
+	  	grid[x][(y-1+L)%L].Inf=1;
+		grid[x][(y-1+L)%L].Type = grid[x][y].Type;
+		//n = n +1;
+            
+        }
   	//else if(grid[x][(y-1+L)%L].Inf == 0 && grid[x][y].Type == 2 ){
         //    grid[x][(y-1+L)%L].Inf=1;
 	//	grid[x][(y-1+L)%L].Type = 2;
@@ -220,12 +232,22 @@ Grid::Grid(int p){
        
 	
 	 //else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1 && rand()%5 !=0){
-	else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type != 0){          
+	else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type != 0 && grid[x][y].Type !=1){          
 	  	grid[(x+1)%L][y].Inf=1;
 		grid[(x+1)%L][y].Type = grid[x][y].Type;
 		//n = n +1;
             
         }
+	
+	else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 1 && rand()%5 !=0 ){          
+	  	grid[(x+1)%L][y].Inf=1;
+		grid[(x+1)%L][y].Type = grid[x][y].Type;
+		//n = n +1;
+            
+        }	
+	
+	
+
 	//  else if(grid[(x+1)%L][y].Inf == 0  && grid[x][y].Type == 2 ){
         //    grid[(x+1)%L][y].Inf=1;
 	//	grid[(x+1)%L][y].Type = 2;
@@ -237,14 +259,24 @@ Grid::Grid(int p){
         
 	
 	//else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1 && rand()%5 !=0){
-	else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type != 0){          
-		//making a cell present on this above point	  	
+	else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type != 0 && grid[x][y].Type !=1){            	
 		grid[(x-1+L)%L][y].Inf=1;
-		//coyping type (mut)
 		grid[(x-1+L)%L][y].Type = grid[x][y].Type;
 		//n = n +1;
             
         }
+	
+	
+	else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 1 && rand()%5 !=0 ){            	
+		grid[(x-1+L)%L][y].Inf=1;
+		grid[(x-1+L)%L][y].Type = grid[x][y].Type;
+		//n = n +1;
+            
+        }	
+	
+	
+	
+	
        // else if(grid[(x-1+L)%L][y].Inf==0 && grid[x][y].Type == 2){
        //     grid[(x-1+L)%L][y].Inf=1;
 	//		grid[(x-1+L)%L][y].Type = 2;
@@ -340,6 +372,7 @@ Grid::Grid(int p){
    
 
 
+
 	//making a file to pring phi and distance to.
 	ofstream distfile;
 	distfile.open("phidist.txt",  ios::trunc);
@@ -392,13 +425,56 @@ Grid::Grid(int p){
 	distfile << i << "," << histd[a] << endl;
 	//cout << i << hist[i] << endl;	
 	}
+distfile.close();
 
 
+//============================ sampling large number of points =============================================
 
 
+	ofstream xifile;
+	xifile.open("xi.txt",  ios::trunc);
 
+	int count[types];
+	int xi[types];
+	
+	for(int i=0;i<=types;i++){
+	count[i]=0;
+	xi[i]=0;
+	//distfile << i << "," << hist[i] << endl;
+	}
 
+	int b,c;
+	for(int i =0; i<types; i++){
+	b = rand()%L;
+        c = rand()%L;
+	//l = rand()%L;
+	//m = rand()%L;
+	
+	
+	//if cell picked is present, increase count hist
+	if(grid[b][c].Inf == 1){
+	count[grid[b][c].Type] = count[grid[b][c].Type] + 1;
+			}
+	
+	
 
+	//closing for loop	
+	}
+	
+	for(int i=0;i<=types;i++){
+	for(int j=0;j<=types;j++){
+	
+	if(count[j]==i){
+	xi[i] = xi[i] +1;
+	}			
+			
+		
+		
+			}
+	xifile << i  << ',' << xi[i] << endl;	
+		}
+
+	xifile.close();
 
 
 
@@ -497,8 +573,7 @@ Grid::Grid(int p){
 
 	
 	//closing the distance file	 
-	distfile.close();
-
+	
 	//if(grid[x][y].Inf == 1 && grid[l][m].Inf == 1){
 	//nsamp = nsamp + 1;
 	//if(grid[x][y].Type == 2 && grid[l][m].Type == 2){
@@ -530,7 +605,7 @@ Grid::Grid(int p){
 
 
 
-for (int i = 1; i < types; i++) {
+for (int i = 1; i <= 20; i++) {
 	stringstream a;
 	a << i;
 	//making many types of files
@@ -538,10 +613,10 @@ for (int i = 1; i < types; i++) {
 	filename += ".txt";
 	//checking they exist
 //	cout << filename << endl;
-	files.open(filename.c_str());
+	files.open(filename.c_str(), ios::trunc);
 	
-	files << 0 << ',' << 0 << endl;
-	 
+	files << 0 << ',' << 0  << endl;
+	
 	for (int l =0; l<L; l ++) {
 		for (int j = 0; j<L; j ++) {
 		if(grid[l][j].Inf==1 && grid[l][j].Type == i){
@@ -759,7 +834,7 @@ int main() {
     // cout << rand() % 100 + 1 << endl;
     
     //testing with grid of size length and height 100
-    Grid G(600);
+    Grid G(700);
     
     // G = new Grid (10);
     
