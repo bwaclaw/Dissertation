@@ -96,8 +96,26 @@ ostream & operator<<(ostream & Str, Grid const & v) {
     return Str;
 }
 
+int Nmut=1 ;
+int Nspm=0 ;
+
+class Genotype {
+	vector <int> mutations ;
+	Genotype() { mutations.clear() ; }
+	Genotype(Genotype &prev) {
+		mutations = prev.mutations ;
+		prev.push_back(++Nspm) ;
+	}
+};
+
+vector <Genotype*> gens ;
+
+
 //grid constructor
 Grid::Grid(int p){
+	Genotype g0 ;
+	gens.clear() ;
+	gens.push_back(g0) ;
     //argument of Grid becomes length and height of grid
     L = p;
     //defining a grid as a 1-d Cell array
@@ -170,8 +188,6 @@ Grid::Grid(int p){
         do {
             x = rand()%L;
             y = rand()%L;
-            l = rand()%L;
-            m = rand()%L;
             //ensuring x,y lie withing L-1 so that we can spread to edge
             //           y = min(i+1,L-2);
             //           x = min(j+1,L-2);
@@ -179,7 +195,19 @@ Grid::Grid(int p){
             //if randomly selecting a infected cell
         } while(grid[x][y].Inf == 0) ;
         
-        
+	const dx[4]={1,0,-1,0},dy[4]={0,1,0,-1} ;
+	int d=rand()%4 ;
+	if (grid[(x+dx[d]+L)%L][(y+dy[d]+L)%L].Inf==0) {
+		grid[(x+dx[d]+L)%L][(y+dy[d]+L)%L].Inf=1 ;
+		if (rand()%100==0) {
+			Nmut++ ;
+			grid[(x+dx[d]+L)%L][(y+dy[d]+L)%L].Type=Nmut ;
+			Genotype gnew(gens[grid[(x+dx[d]+L)%L][(y+dy[d]+L)%L].Type-1]) ;
+			gens.push_back(gnew) ;
+		} else {
+			grid[(x+dx[d]+L)%L][(y+dy[d]+L)%L].Type=grid[x][y].Type ;
+		}
+	}
 	
 //===================================rightwards===================================
         
